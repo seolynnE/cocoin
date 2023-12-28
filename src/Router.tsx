@@ -11,7 +11,7 @@ function Router() {
       <Header />
       <Routes>
         <Route path="/cocoin" element={<Coins />} />
-        <Route path="/cocoin/:coinId/*" element={<Coin />}>
+        <Route path="/:coinId/*" element={<Coin />}>
           <Route path="chart" element={<Chart />} />
           <Route path="price" element={<Price />} />
         </Route>

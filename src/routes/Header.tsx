@@ -24,7 +24,7 @@ function Header() {
   return (
     <HeaderWrap>
       <h1>
-        <Link to="/">cocoIn</Link>
+        <Link to="/cocoin">cocoIn</Link>
       </h1>
     </HeaderWrap>
   );
