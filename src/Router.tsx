@@ -6,8 +6,9 @@ import Price from "./routes/Price";
 import Header from "./routes/Header";
 
 function Router() {
+  const mainURL = process.env.PUBLIC_URL || "/";
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter basename={mainURL}>
       <Header />
       <Routes>
         <Route path="/" element={<Coins />} />
