@@ -24,7 +24,7 @@ function Header() {
   return (
     <HeaderWrap>
       <h1>
-        <Link to={process.env.PUBLIC_URL}>cocoIn</Link>
+        <Link to="/">cocoIn</Link>
       </h1>
     </HeaderWrap>
   );
