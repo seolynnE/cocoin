@@ -7,10 +7,10 @@ import Header from "./routes/Header";
 
 function Router() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Header />
       <Routes>
-        <Route path="/cocoin" element={<Coins />} />
+        <Route path="/" element={<Coins />} />
         <Route path="/:coinId/*" element={<Coin />}>
           <Route path="chart" element={<Chart />} />
           <Route path="price" element={<Price />} />

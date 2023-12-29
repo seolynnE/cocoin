@@ -28,17 +28,26 @@ function Chart() {
         "Loading chart..."
       ) : (
         <ApexCharts
-          type="line"
-          series={[
-            {
-              name: "Price",
-              data: data?.map((price) => parseFloat(price.close)) ?? [],
-            },
-          ]}
+          type="candlestick"
+          series={
+            [
+              {
+                name: "Price",
+                data: data?.map((price) => {
+                  return {
+                    x: price.time_close,
+                    y: [
+                      parseFloat(price.open),
+                      parseFloat(price.high),
+                      parseFloat(price.low),
+                      parseFloat(price.close),
+                    ],
+                  };
+                }),
+              },
+            ] as any
+          }
           options={{
-            theme: {
-              // mode: "dark",
-            },
             chart: {
               height: 500,
               width: 500,

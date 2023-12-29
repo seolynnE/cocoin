@@ -98,6 +98,7 @@ const Tabs = styled.ul`
   display: flex;
   justify-content: center;
   margin-top: 60px;
+  margin-bottom: 20px;
 `;
 const TabBtn = styled.li<{ isActive: boolean }>`
   width: 140px;
@@ -107,7 +108,10 @@ const TabBtn = styled.li<{ isActive: boolean }>`
   transition: 0.3s;
   &:last-child {
     margin-left: -1px;
-    border-left: 1px solid transparent;
+    border-left: ${(props) =>
+      props.isActive
+        ? `1px solid ${props.theme.accentColor}`
+        : "1px solid transparent"};
   }
   a {
     display: block;
