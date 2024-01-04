@@ -2,6 +2,16 @@ import { useQuery } from "react-query";
 import { useOutletContext } from "react-router-dom";
 import { fetchCoinHistory } from "../api";
 import ApexCharts from "react-apexcharts";
+import styled from "styled-components";
+
+const ChartWrap = styled.div`
+  .apexcharts-canvas > svg {
+    background-color: transparent !important;
+  }
+  .apexcharts-tooltip.apexcharts-theme-light {
+    background: rgb(193 193 193 / 32%);
+  }
+`;
 
 interface IHistorical {
   time_open: number;
@@ -17,13 +27,17 @@ interface IHistorical {
 interface ICoinId {
   coinId: string;
 }
-function Chart() {
+interface ICahrtProps {
+  isDark: boolean;
+}
+
+function Chart({ isDark }: ICahrtProps) {
   const coinId = useOutletContext();
   const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () =>
     fetchCoinHistory(`${coinId}`)
   );
   return (
-    <>
+    <ChartWrap>
       {isLoading ? (
         "Loading chart..."
       ) : (
@@ -48,6 +62,9 @@ function Chart() {
             ] as any
           }
           options={{
+            theme: {
+              mode: isDark ? "dark" : "light",
+            },
             chart: {
               height: 500,
               width: 500,
@@ -78,12 +95,12 @@ function Chart() {
                 formatter: (value) => `${value.toFixed(3)}`,
               },
               fillSeriesColor: true,
-              theme: "dark",
+              theme: isDark ? "dark" : "light",
             },
           }}
         />
       )}
-    </>
+    </ChartWrap>
   );
 }
 
