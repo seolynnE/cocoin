@@ -3,6 +3,8 @@ import { useOutletContext } from "react-router-dom";
 import { fetchCoinHistory } from "../api";
 import ApexCharts from "react-apexcharts";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 const ChartWrap = styled.div`
   .apexcharts-canvas > svg {
@@ -27,11 +29,10 @@ interface IHistorical {
 interface ICoinId {
   coinId: string;
 }
-interface ICahrtProps {
-  isDark: boolean;
-}
+interface ICahrtProps {}
 
-function Chart({ isDark }: ICahrtProps) {
+function Chart({}: ICahrtProps) {
+  const isDark = useRecoilValue(isDarkAtom);
   const coinId = useOutletContext();
   const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () =>
     fetchCoinHistory(`${coinId}`)

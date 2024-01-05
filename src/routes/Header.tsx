@@ -1,6 +1,7 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
+import { isDarkAtom } from "../atoms";
 
 const HeaderWrap = styled.header`
   display: flex;
@@ -44,12 +45,12 @@ const HeaderWrap = styled.header`
   }
 `;
 
-interface IHeaderProps {
-  toggleTheme: () => void;
-  isDark: boolean;
-}
+interface IHeaderProps {}
 
-function Header({ toggleTheme, isDark }: IHeaderProps) {
+function Header({}: IHeaderProps) {
+  const isDark = useRecoilValue(isDarkAtom);
+  const setDarkAtom = useSetRecoilState(isDarkAtom);
+  const toggleDarkAtom = () => setDarkAtom((prev) => !prev);
   return (
     <HeaderWrap>
       <h1>
@@ -57,7 +58,7 @@ function Header({ toggleTheme, isDark }: IHeaderProps) {
       </h1>
       <button
         className={`mode ${isDark ? "dark" : "light"}`}
-        onClick={toggleTheme}
+        onClick={toggleDarkAtom}
       />
     </HeaderWrap>
   );

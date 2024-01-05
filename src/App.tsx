@@ -2,7 +2,8 @@ import { ThemeProvider, createGlobalStyle } from "styled-components";
 import Router from "./Router";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { darkThemes, lightThemes } from "./theme";
-import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Roboto:wght@700&display=swap');
   html, body, div, span, applet, object, iframe,
@@ -66,13 +67,12 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 function App() {
-  const [isDark, setIsDark] = useState(true);
-  const toggleTheme = () => setIsDark((current) => !current);
+  const isDark = useRecoilValue(isDarkAtom);
   return (
     <>
       <ThemeProvider theme={isDark ? darkThemes : lightThemes}>
         <GlobalStyle />
-        <Router toggleTheme={toggleTheme} isDark={isDark} />
+        <Router />
         <ReactQueryDevtools initialIsOpen={true} />
       </ThemeProvider>
     </>

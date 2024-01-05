@@ -5,20 +5,17 @@ import Chart from "./routes/Chart";
 import Price from "./routes/Price";
 import Header from "./routes/Header";
 
-interface IRouterProps {
-  toggleTheme: () => void;
-  isDark: boolean;
-}
+interface IRouterProps {}
 
-function Router({ toggleTheme, isDark }: IRouterProps) {
+function Router() {
   const mainURL = process.env.PUBLIC_URL || "/";
   return (
     <BrowserRouter basename={mainURL}>
-      <Header toggleTheme={toggleTheme} isDark={isDark} />
+      <Header />
       <Routes>
         <Route path="/" element={<Coins />} />
         <Route path="/:coinId/*" element={<Coin />}>
-          <Route path="chart" element={<Chart isDark={isDark} />} />
+          <Route path="chart" element={<Chart />} />
           <Route path="price" element={<Price />} />
         </Route>
       </Routes>
