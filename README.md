@@ -45,4 +45,11 @@
 **8.react-helmet**
 <br />
 - 페이지 전환 시 타이틀에 해당 코인을 추가해주기 위해 설치 및 사용했다.
+<br /><br />
 
+**8. Recoil**
+<br />
+- 다크모드를 만들기 위해 사용했다. Recoil을 사용하지 않으면 prop이 기나긴 여정을 떠나게 된다. Recoil은 atom을 형성하고, 그 value가 필요하면 component가 직접 atom에 연결해주면 되기때문에 직관적이며 시간도 절약되고 ~~멘탈도 덜 갈린다.~~
+- atom의 값을 얻을 때 : useRecoilValue()
+- atom의 값을 변경할 때 : useSetRecoilState() /react의 setState함수와 똑같이 동작한다.
+<br /><br />
